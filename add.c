@@ -13,7 +13,7 @@ int main(int argc,char *argv[])
 	printf("hello\n");
 	
 printf(" i modified at remote side \n");
-	
+printf("git fetch and git merge \n");
 
 	printf("i modified in local repo\n");
 }
