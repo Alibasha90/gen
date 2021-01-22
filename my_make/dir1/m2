@@ -1,0 +1,33 @@
+# multiple makefiles building 
+
+CC= gcc
+CFLAGS= -c 
+
+
+all: main.o sub.o  ../dir2/add.o  ../dir3/mul.o
+	gcc -o all main.o sub.o  ../dir2/add.o  ../dir3/mul.o
+
+main.o: main.c sub.h ../dir2/add.h ../dir3/mul.h
+	gcc -c  main.c  -Idir2/  -Idir3/
+
+sub.o:sub.c
+	gcc -c sub.c
+
+
+
+include: ../dir2/Makefile  ../dir3/Makefile 
+
+
+rm:
+	rm *.o all
+
+
+install:all
+	@cp all /usr/bin
+	@chmod a+x /usr/bin/all
+	@chmod og-w /usr/bin/all
+	@echo "target successfully installed in path"
+
+uninstall:
+	@rm -f /usr/bin/all
+	@echo "target uninstalled from path"
